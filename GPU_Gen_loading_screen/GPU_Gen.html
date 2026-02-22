@@ -360,7 +360,15 @@
                     unloadBackground();
                 }
             })
+            window.addEventListener("message", (event) => {
+                if (event.data.type === 'SET_BAR') {
+                    setLoadingBar(event.data.value); // This is your actual function
+                }else if (event.data.type == "Unload") {
+                    unloadBackground();
+                }
+            });
     </script>
 
 </html>
+
 
