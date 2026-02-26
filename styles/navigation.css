@@ -1,0 +1,81 @@
+.slide-nav-trigger {
+    position: fixed;
+    bottom: 0px;
+    background: transparent;
+    width: 100%;
+    height: calc(5vh + 20px);
+    z-index: 1000;
+    pointer-events: none;
+    cursor: default;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;      /* IE 10 and old Edge */
+    user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+}
+
+.slide-nav-container {
+    position: fixed;
+    bottom: -10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 50px;
+    padding: 10px 20px;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: bottom 0.5s ease;
+}
+
+.slide-nav-scroll {
+    display: flex;
+    gap: 15px;
+    overflow-x: scroll;
+    padding: 5px 0;
+}
+
+.slide-nav-scroll::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;;
+}
+
+.slide-nav-scroll::-webkit-scrollbar-thumb {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+.slide-nav-scroll::-webkit-scrollbar-track {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+.nav-btn {
+    min-width: 5vh;
+    height: 5vh;
+    border-radius: 2.5vh;
+    background: transparent;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    color: #00ffff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.nav-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.nav-btn.active {
+    border-radius: 50%;
+    background: #00ffff;
+    color: #00141e;
+    box-shadow: 0 0 20px #00ffff;
+}

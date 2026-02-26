@@ -1,0 +1,198 @@
+
+
+#loadingScreen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1000000001;
+
+  background: transparent;
+
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;      /* IE 10 and old Edge */
+  user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+}
+
+#susCover {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  z-index: 1000000000;
+
+  background: transparent;
+
+  background: white;
+
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;      /* IE 10 and old Edge */
+  user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+}
+
+.loadingBody {
+    margin: 0px;
+    padding: 0px;
+}
+
+.xDetail {
+  text-shadow: 1px 1px 1px cyan;
+  -webkit-text-stroke: 1px solid rgb(141, 214, 214);
+  font-size: 5vh;    
+  color: turquoise;  
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  overflow-wrap: break-word;
+  letter-spacing: 0.5vh;
+  line-height: 0.7;
+  background: transparent;
+  text-align: center;
+  position: fixed;
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;      /* IE 10 and old Edge */
+  user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+  z-index: 3;
+
+  opacity: 0.85;
+}
+
+.dotDetail_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 1vh);
+
+    column-gap: 10px;
+
+    height: 2.1vh;
+    
+    background: transparent;
+    justify-content: center;
+    position: fixed;
+    cursor: default;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;      /* IE 10 and old Edge */
+    user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+    z-index: 3;
+}
+
+.dotDetail {
+    width: 1vh;
+    aspect-ratio: 1 / 1;
+
+    border-radius: 100%;
+
+    box-shadow: 1px 1px 1px turquoise;
+    outline: 1px solid rgb(141, 214, 214);
+    background: cyan;  
+    cursor: default;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;      /* IE 10 and old Edge */
+    user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+    z-index: 3;
+
+    opacity: 0.75;
+}
+
+#circle_from_Index {
+  height: 60vh;
+  max-height: 60vh;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+  box-shadow: 1px 1px 1px rgb(39, 73, 70);
+  outline: 1px solid rgb(24, 59, 75);
+  background-color: rgba(23, 39, 56, 0.45);
+  right: 10vw;
+  top: 20vh;
+  position: fixed;
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;      /* IE 10 and old Edge */
+  user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+  z-index: 3;
+}
+
+#chip_Image {
+  width: 135%;
+  height: 135%;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: grayscale(100%) brightness(40%);
+  background: transparent;
+  cursor: default;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none;      /* IE 10 and old Edge */
+  user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+  z-index: 3;
+}
+
+.textContainer {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+
+    display: grid;
+    grid-template-rows: repeat(auto-fit, auto);
+
+    row-gap: 10px;
+    justify-content: left;
+    width: 40vw;
+    z-index: 5;
+}
+
+.textTitle {
+    width: 40vw;
+    font-family: 'Arial Black', sans-serif;
+    font-size: 8vh;
+    font-weight: 900;
+    color: #00f2ea;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: -2px;
+
+    margin-left: 1em;
+
+    -webkit-text-stroke: 1.5px white;
+
+    text-shadow: 
+      3px 3px 0px white,
+      4px 4px 10px rgba(0, 0, 0, 0.3);
+
+    overflow-wrap: break-word;
+
+    background: transparent;
+    cursor: default;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;      /* IE 10 and old Edge */
+    user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+
+    z-index: 10;
+}
+
+.textDescription {
+    width: 35vw;
+    color: white;
+    font-size: 1.65vh;
+    font-family: Arial, sans-serif;
+    line-height: 1.2;
+    overflow-wrap: break-word;
+    background: transparent;
+    cursor: default;
+    text-align: center;
+    margin-left: 2em;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none;      /* IE 10 and old Edge */
+    user-select: none;          /* Standard (Chrome, Firefox, Opera) */
+    z-index: 10;
+}
+
+

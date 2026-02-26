@@ -1,0 +1,133 @@
+._globalTopLeft {
+    position: fixed !important;
+    top: 0px !important;
+    left: 0px !important;
+}
+
+._globalTopRight {
+    position: fixed !important;
+    top: 0px !important;
+    right: 0px !important;
+}
+
+._globalBottomLeft {
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 0px !important;
+}
+
+._globalBottomRight {
+    position: fixed !important;
+    bottom: 0px !important;
+    right: 0px !important;
+}
+
+._globalCenter {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+._globalCenterTop {
+    position: fixed !important;
+    top: 0px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+._globalCenterBottom {
+    position: fixed !important;
+    bottom: 0px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+._globalCenterLeft {
+    position: fixed !important;
+    top: 50% !important;
+    left: 0px !important;
+    transform: translateY(-50%);
+}
+
+._globalCenterRight {
+    position: fixed !important;
+    top: 50% !important;
+    right: 0px !important;
+    transform: translateY(-50%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+._localTopLeft {
+    position: absolute !important;
+    top: 0px !important;
+    left: 0px !important;
+}   
+
+._localTopRight {
+    position: absolute !important;
+    top: 0px !important;
+    right: 0px !important;
+}
+
+._localBottomLeft {
+    position: absolute !important;
+    bottom: 0px !important;
+    left: 0px !important;
+}
+
+._localBottomRight {
+    position: absolute !important;
+    bottom: 0px !important;
+    right: 0px !important;
+}
+
+._localCenter {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+}
+
+._localCenterTop {
+    position: absolute !important;
+    top: 0px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+._localCenterBottom {
+    position: absolute !important;
+    bottom: 0px !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+}
+
+._localCenterLeft {
+    position: absolute !important;
+    top: 50% !important;
+    left: 0px !important;
+    transform: translateY(-50%);
+}
+
+._localCenterRight {
+    position: absolute !important;
+    top: 50% !important;
+    right: 0px !important;
+    transform: translateY(-50%);
+}
+
+

@@ -1,0 +1,21 @@
+.cosmic-blue-background {
+    background: radial-gradient(circle at 85% 15%, #0d4b5a 0%, #030e1a 70%);
+    z-index: 1;
+}
+
+.cosmic-red-background {
+    background: radial-gradient(circle at 15% 85%, #5a0d0d 0%, #1a0303 70%);
+    z-index: 1;
+}
+
+.cosmic-rain-background {
+    width: 100%;
+    height: 100%;
+    background-image: url("../decal/mainSlide/finalRaining.png");
+    background-repeat: repeat;
+    background-size: 50vw 100vh;
+    position: fixed;
+    filter: grayscale(30%) brightness(50%);
+    opacity: 0.3;
+    z-index: 2;
+}
