@@ -1,0 +1,91 @@
+/* default transitions */
+.fullTransition {
+    transition: all 1s ease;
+}
+
+.positionTransition {
+    transition: 
+            left 1s ease, 
+            top 1s ease,
+            right 1s ease,
+            bottom 1s ease;
+}
+
+.sizeTransition {
+    transition: 
+            width 1s ease, 
+            height 1s ease;
+}
+
+.textTransition {
+    transition: 
+            font-size 1s ease, 
+            letter-spacing 1s ease;
+}   
+
+.backroundTransition {
+    transition: background 1s ease;
+}
+
+
+/* custom transitions */
+.swipeTransition {
+    transition: 
+            left 1s ease-out , 
+            top 1s ease-out ,
+            right 1s ease-out ,
+            bottom 1s ease-out ;
+}
+
+.reverseSwipeTransition {
+    transition: 
+            left 1s ease-in , 
+            top 1s ease-in ,
+            right 1s ease-in ,
+            bottom 1s ease-in ;
+}
+
+/* animations */
+
+.powerOnAnimation {
+    filter: grayscale(100%) brightness(40%);
+    animation: PowerOn 2s ease-in-out forwards;
+    animation-delay: 1.5s;
+}
+
+.powerOffAnimation {
+    filter: grayscale(0%) brightness(100%);
+    animation: PowerOf 1s ease-in-out forwards;
+}
+
+@keyframes PowerOn {
+    0% { filter: grayscale(100%) brightness(40%)}
+    10% {filter: grayscale(90%) brightness(46%)}
+    20% {filter: grayscale(80%) brightness(52%)}
+    30% {filter: grayscale(70%) brightness(58%)}
+    40% {filter: grayscale(60%) brightness(64%)}
+    50% {filter: grayscale(50%) brightness(70%)}
+    51% {filter: grayscale(50%) brightness(75%)}
+    60% {filter: grayscale(40%) brightness(76%)}
+    70% {filter: grayscale(30%) brightness(82%)}
+    71% {filter: grayscale(30%) brightness(88%)}
+    80% {filter: grayscale(20%) brightness(88%)}
+    90% {filter: grayscale(10%) brightness(94%)}
+    100% {filter: grayscale(0%) brightness(100%)}
+}
+
+@keyframes PowerOf {
+    0% { filter: grayscale(0%) brightness(100%)}
+    10% {filter: grayscale(10%) brightness(94%)}
+    20% {filter: grayscale(20%) brightness(88%)}
+    30% {filter: grayscale(30%) brightness(82%)}
+    40% {filter: grayscale(40%) brightness(76%)}
+    50% {filter: grayscale(50%) brightness(70%)}
+    51% {filter: grayscale(50%) brightness(65%)}
+    60% {filter: grayscale(60%) brightness(64%)}
+    70% {filter: grayscale(70%) brightness(58%)}
+    71% {filter: grayscale(70%) brightness(52%)}
+    80% {filter: grayscale(80%) brightness(52%)}
+    90% {filter: grayscale(90%) brightness(46%)}
+    100% {filter: grayscale(100%) brightness(40%)}
+}
