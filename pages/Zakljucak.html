@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel = "stylesheet" href = "../styles/all.css">
+
+        <Title>
+            Zakljucak
+        </Title>
+
+        <style>
+            #viewport-container {
+                position: absolute; top: 0; left: 0;
+                width: 100%; height: 100%;
+                z-index: 10;
+            }
+
+            .part-nav-container {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                min-width: 50%;
+                height: 20%;
+                background: transparent;
+                backdrop-filter: blur(10px);
+                padding: 10px 20px;
+                z-index: 1000;
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                display: flex;
+                flex-direction: row;
+                text-align: center;
+                justify-content: center;
+                justify-self: center;
+                justify-items: center;
+                align-items: center;
+                overflow: visible;
+                width: auto;
+                scroll-behavior: smooth;
+            }
+
+            .part-nav-scroll {
+                display: flex;
+                gap: 15px;
+                overflow-x: scroll;
+                padding: 5px 0;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar {
+                width: 0px;
+                height: 0px;
+                background: transparent;;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar-thumb {
+                width: 0px;
+                height: 0px;
+                background: transparent;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar-track {
+                width: 0px;
+                height: 0px;
+                background: transparent;
+            }
+
+            .component-btn {
+                min-width: 50vh;
+                min-height: 50vh;
+                border-radius: 10px;
+                background: transparent;
+                border-radius: 20px;
+                border: 2px solid rgba(0, 255, 255, 0.3);
+                color: #00ffff;
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+                max-height: 55vh;
+            }
+
+
+            .component-btn:hover {
+                background: rgba(0, 255, 255, 0.1);
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            }
+
+            .component-btn.active {
+                background: #00ffff;
+                color: #00141e;
+                box-shadow: 0 0 20px #00ffff;
+            }
+
+            .component-title {
+                font-size: 3vh;
+                color: white;
+                width: 100%;
+                text-align: center;
+                background: transparent;
+                overflow-wrap: break-word;
+            }
+
+            .component-date {
+                font-size: 2vh;
+                color: #7aa6ca;
+                width: 100%;
+                text-align: center;
+                background: transparent;
+                overflow-wrap: break-word;
+            }
+            
+            .component-description {
+                font-size: 1.5vh;
+                color: #00ffff;
+                margin-top: 10px;
+                width: 30vw;
+                height: auto;
+                text-align: center;
+                justify-content: center;
+                justify-self: center;
+                justify-items: center;
+                align-items: center;
+                background: transparent;
+            }
+
+            .finePrint {
+                position: fixed;
+                bottom: 10px;
+                left: 0px;
+                width: 100%;
+                text-align: center;
+                font-family: 'Courier New', monospace;
+                color: white;
+                filter: grayscale(30%) brightness(75%);
+                font-size: 2vh;
+                z-index: 10;
+            }
+
+            .centrilized {
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .bulbImage {
+                width: 20vh;
+                height: 20vh;
+                background: transparent;
+            }
+
+
+            .bulbAnimation {
+                filter: grayscale(100%) brightness(40%);
+                animation: bulbFrame 2s ease-in-out infinite;
+                animation-delay: 1.5s;
+            }
+
+            @keyframes bulbFrame {
+                0% { filter: grayscale(100%) brightness(40%)}
+                10% {filter: grayscale(90%) brightness(46%)}
+                20% {filter: grayscale(80%) brightness(52%)}
+                30% {filter: grayscale(70%) brightness(58%)}
+                40% {filter: grayscale(60%) brightness(64%)}
+                50% {filter: grayscale(50%) brightness(70%)}
+                51% {filter: grayscale(50%) brightness(75%)}
+                60% {filter: grayscale(40%) brightness(76%)}
+                70% {filter: grayscale(30%) brightness(82%)}
+                71% {filter: grayscale(30%) brightness(88%)}
+                80% {filter: grayscale(20%) brightness(88%)}
+                90% {filter: grayscale(10%) brightness(94%)}
+                100% {filter: grayscale(0%) brightness(100%)}
+            }
+        </style>
+    </head>
+
+    <body class = "cosmic-blue-background">
+        <div class = "cosmic-rain-background"></div>
+
+        <div id = "susCover"></div>
+
+        <div id="viewport-container"></div>
+
+        <iframe id = "loadingScreen" src = "https://masterclassonrighttrack.github.io/GPU_Project/GPU_Gen_loading_screen/GPU_Gen.html">
+
+        </iframe>
+
+        <div class="part-nav-container">
+            <img class = "bulbImage bulbAnimation" src="../decal/Zakljucak/Bulb.png" alt="Bulb Image">
+            <p class = "component-description">
+                Закључак је да су графичке картице данас критична инфраструктура, а не само додатак за рачунар. Захваљујући способности за масовну паралелну обраду података, оне су постале главни покретач вештачке интелигенције, савремене науке и професионалне индустрије, чиме су по значају практично изједначене са главним процесором (CPU).
+            </p>
+        </div>
+
+                <nav class="slide-nav-container">
+            <div class="slide-nav-scroll">
+                <button class="nav-btn" onclick="window.location.href='../index.html'">GPU</button>
+                <button class="nav-btn" onclick="window.location.href='Istorijat.html'">Istorijat</button>
+                <button class="nav-btn" onclick="window.location.href='Poredjenje.html'">Poredjenje</button>
+                <button class="nav-btn" onclick="window.location.href='Konstrukcija.html'">Konstrukcija</button>
+                <button class="nav-btn" onclick="window.location.href='Upotreba.html'">Upotreba</button>
+                <button class="nav-btn active" onclick="window.location.href='Zakljucak.html'">Zakljucak</button>
+            </div>
+        </nav>
+    </body>
+
+    <script id = "metadata">
+        window.RTX3080_CameraLocation = {
+            x: -2.244198972735674,
+            y:  4.980783784515609,
+            z:  5.504571852258874
+        }
+    </script>
+
+    <script type = "module" id = "design">
+        import {xDetail, dotDetail, textSection, smartUI} from "../modules/details.js";
+        import {textLoader, jsonLoader} from "../modules/dataLoader.js";
+
+        async function StartLoading() {
+            // main component for xDetail are (number of x's, position, [shouldAnimate, shouldSwipe, swipeDirection])
+            window.oxDetail = await xDetail(6, "_globalTopLeft", [true, true, "left"]);
+            // main component for dotDetail are (number of x's, position, [shouldAnimate, shouldSwipe, swipeDirection])
+            window.odotDetail = await dotDetail(3, "_globalBottomRight", [true, true, "right"]);
+            
+            window.addEventListener("keydown", (event) => {
+                if (event.shiftKey && event.key.toUpperCase() === "P") {
+                    oxDetail.unload();
+                    odotDetail.unload();
+                    // textContainer.unload();
+                }
+            });
+        }
+
+        window.action = {
+            contentLoaded: false,
+        };
+
+        window.actionProxy = new Proxy(action, {
+            set(table, property, value) {
+                if (property == "contentLoaded" && value) {
+                    table[property] = value;
+                    StartLoading();
+                    return true;
+                }
+            }
+        })
+
+                const scrollContainer = document.querySelector(".slide-nav-scroll");
+
+        scrollContainer.addEventListener("wheel", (event) => {
+            // Prevent the default vertical scroll
+            event.preventDefault();
+
+            scrollContainer.scrollLeft += event.deltaY;
+        }, { passive: false });
+
+        window.addEventListener("mousemove", (event) => {
+
+            const mouseY = event.clientY;
+            const windowHeight = window.innerHeight;
+
+            if (windowHeight - mouseY < (windowHeight * 0.2)) {
+                document.querySelector(".slide-nav-container").style.bottom = "20px";
+            } else {
+                document.querySelector(".slide-nav-container").style.bottom = "-10vh";
+            }
+        });
+    </script>
+
+    <script id = "script_loadingScreen">
+            let i_horizontal = window.innerWidth / 50;
+            let i_vertical = window.innerHeight / 50;
+
+            let rectCounter = 0;
+
+            for (let y = 0; y < i_vertical; y++) {
+                for (let x = 0; x < i_horizontal; x++) {
+                    rectCounter += 1;
+                }
+            }
+
+            const unloadTime = rectCounter * 0.01 + 2 + 0.5; // 1 is message sending delay time
+
+
+            window.wait = (seconds) => new Promise(resolve => {setTimeout(resolve, seconds * 1000)})
+            const loadingFrame = document.getElementById("loadingScreen");
+            const susCover = document.getElementById("susCover");
+
+            let precentage = 0;
+
+            async function loadLoadingBar() {
+                loadingFrame.author = "Zimin (II7) 2026"
+                for (let i = 0; i < 3; i++) {
+                    loadingFrame.contentWindow.postMessage({
+                        type: 'SET_BAR',
+                        value: precentage
+                    }, 'https://masterclassonrighttrack.github.io'); // Security: Only send to this URL
+                    precentage += 50;
+                    await wait(1);
+                };
+
+                loadingFrame.contentWindow.postMessage({
+                    type: 'Unload',
+                    value: 0
+                }, 'https://masterclassonrighttrack.github.io'); // Security: Only send to this URL
+                
+                document.body.classList.remove("loadingBody");
+                await wait(unloadTime)
+                window.actionProxy.contentLoaded = true
+
+                setTimeout(() => {
+                    document.body.removeChild(loadingFrame);
+                }, 2000)
+            };
+
+            loadingFrame.onload = function() {
+                document.body.removeChild(susCover);
+                loadLoadingBar();
+            }
+    </script>
+
+</html>

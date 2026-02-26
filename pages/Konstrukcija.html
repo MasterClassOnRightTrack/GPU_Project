@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel = "stylesheet" href = "../styles/all.css">
+
+        <Title>
+            Konstrukcija
+        </Title>
+
+        <style>
+            #viewport-container {
+                position: absolute; top: 0; left: 0;
+                width: 100%; height: 100%;
+                z-index: 10;
+            }
+
+            .part-nav-container {
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
+                background: transparent;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(0, 255, 255, 0.2);
+                border-radius: 50px;
+                padding: 10px 20px;
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+
+            .part-nav-scroll {
+                display: flex;
+                gap: 15px;
+                overflow-x: scroll;
+                padding: 5px 0;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar {
+                width: 0px;
+                height: 0px;
+                background: transparent;;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar-thumb {
+                width: 0px;
+                height: 0px;
+                background: transparent;
+            }
+
+            .part-nav-scroll::-webkit-scrollbar-track {
+                width: 0px;
+                height: 0px;
+                background: transparent;
+            }
+
+            .component-btn {
+                min-width: 2.5vh;
+                height: 2.5vh;
+                border-radius: 2.5vh;
+                background: transparent;
+                border: 2px solid rgba(0, 255, 255, 0.3);
+                color: #00ffff;
+                font-family: 'Courier New', monospace;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                flex-shrink: 0;
+            }
+
+            .component-btn:hover {
+                background: rgba(0, 255, 255, 0.1);
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            }
+
+            .component-btn.active {
+                border-radius: 50%;
+                background: #00ffff;
+                color: #00141e;
+                box-shadow: 0 0 20px #00ffff;
+            }
+        </style>
+    </head>
+
+    <body class = "cosmic-blue-background">
+        <div class = "cosmic-rain-background"></div>
+
+        <div id = "susCover"></div>
+
+        <div id="viewport-container"></div>
+
+        <iframe id = "loadingScreen" src = "https://masterclassonrighttrack.github.io/GPU_Project/GPU_Gen_loading_screen/GPU_Gen.html">
+
+        </iframe>
+
+        <div class="part-nav-container">
+            <div class="part-nav-scroll">
+
+            <div>
+        </div>
+
+        <nav class="slide-nav-container">
+            <div class="slide-nav-scroll">
+                <button class="nav-btn" onclick="window.location.href='../index.html'">GPU</button>
+                <button class="nav-btn" onclick="window.location.href='Istorijat.html'">Istorijat</button>
+                <button class="nav-btn" onclick="window.location.href='Poredjenje.html'">Poredjenje</button>
+                <button class="nav-btn active" onclick="window.location.href='Konstrukcija.html'">Konstrukcija</button>
+                <button class="nav-btn" onclick="window.location.href='Upotreba.html'">Upotreba</button>
+                <button class="nav-btn" onclick="window.location.href='Zakljucak.html'">Zakljucak</button>
+            </div>
+        </nav>
+    </body>
+
+    <script id = "metadata">
+        window.RTX3080_CameraLocation = {
+            x: -2.244198972735674,
+            y:  4.980783784515609,
+            z:  5.504571852258874
+        }
+    </script>
+
+    <script type = "module" id = "design">
+        import {xDetail, dotDetail, textSection, smartUI} from "../modules/details.js";
+        import {textLoader, jsonLoader} from "../modules/dataLoader.js";
+
+        async function StartLoading() {
+            // main component for xDetail are (number of x's, position, [shouldAnimate, shouldSwipe, swipeDirection])
+            window.oxDetail = await xDetail(6, "_globalTopLeft", [true, true, "left"]);
+            // main component for dotDetail are (number of x's, position, [shouldAnimate, shouldSwipe, swipeDirection])
+            window.odotDetail = await dotDetail(3, "_globalBottomRight", [true, true, "right"]);
+            
+            window.addEventListener("keydown", (event) => {
+                if (event.shiftKey && event.key.toUpperCase() === "P") {
+                    oxDetail.unload();
+                    odotDetail.unload();
+                    // textContainer.unload();
+                }
+            });
+        }
+
+        window.action = {
+            contentLoaded: false,
+        };
+
+        window.actionProxy = new Proxy(action, {
+            set(table, property, value) {
+                if (property == "contentLoaded" && value) {
+                    table[property] = value;
+                    StartLoading();
+                    return true;
+                }
+            }
+        })
+
+        const scrollContainer = document.querySelector(".slide-nav-scroll");
+
+        scrollContainer.addEventListener("wheel", (event) => {
+            // Prevent the default vertical scroll
+            event.preventDefault();
+
+            scrollContainer.scrollLeft += event.deltaY;
+        }, { passive: false });
+
+        window.addEventListener("mousemove", (event) => {
+
+            const mouseY = event.clientY;
+            const windowHeight = window.innerHeight;
+
+            if (windowHeight - mouseY < (windowHeight * 0.2)) {
+                document.querySelector(".slide-nav-container").style.bottom = "20px";
+            } else {
+                document.querySelector(".slide-nav-container").style.bottom = "-10vh";
+            }
+        });
+    </script>
+
+    <script id = "script_loadingScreen">
+            let i_horizontal = window.innerWidth / 50;
+            let i_vertical = window.innerHeight / 50;
+
+            let rectCounter = 0;
+
+            for (let y = 0; y < i_vertical; y++) {
+                for (let x = 0; x < i_horizontal; x++) {
+                    rectCounter += 1;
+                }
+            }
+
+            const unloadTime = rectCounter * 0.01 + 2 + 0.5; // 1 is message sending delay time
+
+
+            window.wait = (seconds) => new Promise(resolve => {setTimeout(resolve, seconds * 1000)})
+            const loadingFrame = document.getElementById("loadingScreen");
+            const susCover = document.getElementById("susCover");
+
+            let precentage = 0;
+
+            async function loadLoadingBar() {
+                loadingFrame.author = "Zimin (II7) 2026"
+                for (let i = 0; i < 10; i++) {
+                    loadingFrame.contentWindow.postMessage({
+                        type: 'SET_BAR',
+                        value: precentage
+                    }, 'https://masterclassonrighttrack.github.io'); // Security: Only send to this URL
+                    precentage += 10;
+                    await wait(1);
+                };
+
+                loadingFrame.contentWindow.postMessage({
+                    type: 'Unload',
+                    value: 0
+                }, 'https://masterclassonrighttrack.github.io'); // Security: Only send to this URL
+                
+                document.body.classList.remove("loadingBody");
+                await wait(unloadTime)
+                window.actionProxy.contentLoaded = true
+
+                setTimeout(() => {
+                    document.body.removeChild(loadingFrame);
+                }, 2000)
+            };
+
+            loadingFrame.onload = function() {
+                document.body.removeChild(susCover);
+                loadLoadingBar();
+            }
+    </script>
+
+       <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+        import { MeshLoader } from '../modules/meshLoader.js';
+
+        const COMPONENT_DATA = {
+            "FAN_2": {
+                title: "Фенови (Вентилатори)", 
+                desc: "Фенови на графичкој карти имају кључну улогу у одржавању оптималне температуре графичког процесора и пратећих компоненти; њихова функција је да обезбеде континуирано хлађење кроз контролисано струјање ваздуха, чиме се омогућава стабилан рад система, продужава животни век картице и спречава термички стрес кроз динамичку регулацију брзине.",
+                requiresFade: false,
+            },
+            "Mainboard": {
+                title: "Плоча (PCB)", 
+                desc: "Главна плоча служи као централни нервни систем графичке картице, повезујући све критичне компоненте попут GPU-а, меморије и модула за напајање кроз вишеслојне бакарне путање; израђена је од висококвалитетних материјала који обезбеђују ефикасан пренос сигнала и структуралну чврстину, спречавајући прегревање и деградацију електронских кола током дуготрајног рада.",
+                requiresFade: true,
+            },
+            "Cooler": {
+                title: "Хладњак (Heatsink)", 
+                desc: "Овај масивни метални блок, израђен од алуминијумских ребара и бакарних цеви, деловањем топлотне проводљивости апсорбује вишак топлоте са GPU чипа; његова конструкција повећава површину преко које ваздух са фенова преузима топлоту, представљајући најважнији пасивни елемент у систему за спречавање термичког пригушивања (thermal throttling).",
+                requiresFade: true,
+            },
+            "Backplate": {
+                title: "Заштитна плоча (Backplate)", 
+                desc: "Метална плоча на полеђини картице пружа додатно ојачање које спречава савијање плоче услед тежине хладњака, док истовремено помаже у пасивном одвођењу топлоте са задњих компоненти меморије и плоче; такође служи као естетски елемент и заштита од физичких оштећења или накупљања прашине.",
+                requiresFade: true,
+            },
+            "Capacitor": {
+                title: "Кондензатори", 
+                desc: "Ове електронске компоненте служе за складиштење и филтрирање електричне енергије, обезбеђујући чист и стабилан напон без флуктуација за најосетљивије делове картице; висококвалитетни полимерни или танталумски кондензатори су кључни за стабилност при високом оптерећењу и спречавају шум у електричним колима који може утицати на прецизност рада чипа.",
+                requiresFade: true,
+            },
+            "CPU": {
+                title: "Графички процесор (GPU чип)", 
+                desc: "Најсложенији део картице, састављен од милијарди транзистора, одговоран за извршавање математичких прорачуна неопходних за рендеровање слике, вештачку интелигенцију и паралелну обраду података; његова архитектура одређује укупне перформансе система, брзину приказа фрејмова и подршку за напредне технологије попут Ray Tracing-а.",
+                requiresFade: true,
+            },
+            "Memory_Modules": {
+                title: "Видео меморија (VRAM)", 
+                desc: "Ултра-брзи меморијски модули смештени непосредно уз GPU који служе за привремено складиштење текстура, геометријских података и фрејм-бафера; капацитет и брзина VRAM-а су пресудни за рендеровање сложених сцена у високој резолуцији и омогућавају тренутни приступ подацима потребним графичком процесору.",
+                requiresFade: true,
+            },
+            // "Voltage Regulator": {
+            //     title: "Регулатор напона (VRM)", 
+            //     desc: "Систем малих али моћних електронских компоненти (MOSFET-ови и завојнице) који високи напон из напајања рачунара трансформишу у низак, прецизан и екстремно стабилан напон који је потребан GPU чипу и меморији; ефикасан VRM је кључан за постизање високих фреквенција рада и спречавање претераног грејања током екстремних оптерећења.",
+            //     requiresFade: true,
+            // }
+        };
+
+        let partsMoved = false;
+
+        let defaultParentPartsPosition = {
+            "Mainboard": { x: -0.8473208546638489, y: 0.5898587107658386, z: 0.6116207242012024 },
+            "UpperChassis": {x: 0.22403252124786377, y: 1.4063705205917358, z: -0.18959811329841614},
+        }
+
+        class App {
+            constructor(containerId, modelUrl, clickFilter = []) {
+                this.container = document.getElementById(containerId);
+                this.clickFilter = clickFilter;
+                
+                this.defaultCamPos = { x: -2.244198972735674, y: 4.980783784515609, z: 5.504571852258874 };
+                this.defaultZoom = 35;
+
+                this.initEngine();
+                this.initLights();
+                this.initInteractions();
+                
+                this.loader = new MeshLoader(this.scene);
+                this.loader.loadFromURL(modelUrl);
+
+                window.addEventListener('resize', () => this.onWindowResize());
+
+                this.animate();
+            }
+
+            initEngine() {
+                this.scene = new THREE.Scene();
+                
+                this.camera = new THREE.PerspectiveCamera(this.defaultZoom, this.container.clientWidth / this.container.clientHeight, 0.1, 1000);
+                this.camera.position.set(this.defaultCamPos.x, this.defaultCamPos.y, this.defaultCamPos.z);
+                this.camera.lookAt(0, 0, 0);
+
+                this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+                this.renderer.setClearColor(0x000000, 0);
+                this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+                this.container.appendChild(this.renderer.domElement);
+
+                this.labelRenderer = new CSS2DRenderer();
+                this.labelRenderer.setSize(this.container.clientWidth, this.container.clientHeight);
+                this.labelRenderer.domElement.style.position = 'absolute';
+                this.labelRenderer.domElement.style.top = '0px';
+                this.labelRenderer.domElement.style.pointerEvents = 'none';
+                this.container.appendChild(this.labelRenderer.domElement);
+            }
+
+            initInteractions() {
+                this.container.addEventListener('contextmenu', (e) => {
+                    e.preventDefault(); 
+                    this.resetView();
+                });
+            }
+
+            resetView() {
+                // Reset Camera
+                this.setCamera(this.defaultCamPos, this.defaultZoom);
+
+                // Close parts if they were open
+                if (partsMoved) {
+                    this.razdvolji();
+                    // this.unhighlightAll();
+                }
+
+                // Remove label
+                const existing = this.scene.getObjectByName('activeLabel');
+                if (existing) this.scene.remove(existing);
+            }
+
+            setCamera(pos = this.defaultCamPos, zoom = this.defaultZoom, duration = 1.2) {
+                gsap.to(this.camera.position, {
+                    x: pos.x,
+                    y: pos.y,
+                    z: pos.z,
+                    duration: duration,
+                    ease: "power2.inOut",
+                    onUpdate: () => this.camera.lookAt(0, 0, 0)
+                });
+
+                gsap.to(this.camera, {
+                    fov: zoom,
+                    duration: duration,
+                    ease: "power2.inOut",
+                    onUpdate: () => this.camera.updateProjectionMatrix()
+                });
+
+
+            }
+
+            onPartClick(part) {
+                const targetPos = new THREE.Vector3();
+                part.getWorldPosition(targetPos);
+
+                gsap.to(this.camera.position, {
+                    x: targetPos.x + 1.5, 
+                    y: targetPos.y + 0.8, 
+                    z: targetPos.z + 2.5,
+                    duration: 1.5,
+                    ease: "power3.inOut",
+                    onUpdate: () => this.camera.lookAt(targetPos)
+                });
+
+                this.createDetailedLabel(part, targetPos);
+            }
+
+            onWindowResize() {
+                // 1. Update the camera's aspect ratio
+                this.camera.aspect = this.container.clientWidth / this.container.clientHeight;
+                
+                // 2. Recalculate the projection matrix
+                this.camera.updateProjectionMatrix();
+
+                // 3. Update the size of both renderers
+                this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
+                this.labelRenderer.setSize(this.container.clientWidth, this.container.clientHeight);
+            }
+
+            movePart(name, newPos, duration = 1.2) {
+                if (!this.loader || typeof this.loader.findDescendant !== 'function') {
+                    console.error("MeshLoader nije inicijalizovan ili nedostaje findDescendant metoda.");
+                    return;
+                }
+
+                const target = this.loader.findDescendant(name);
+
+                if (target) {
+
+                    gsap.to(target.position, {
+                        x: newPos.x !== undefined ? newPos.x : target.position.x,
+                        y: newPos.y !== undefined ? newPos.y : target.position.y,
+                        z: newPos.z !== undefined ? newPos.z : target.position.z,
+                        duration: duration,
+                        ease: "power2.inOut",
+                        onStart: () => {
+                            console.log(`Pomeram objekat: ${name}`);
+                        }
+                    });
+                } else {
+                    console.warn(`Objekat sa imenom "${name}" nije pronađen u sceni.`);
+                }
+            }
+
+            createDetailedLabel(part, pos) {
+                const existing = this.scene.getObjectByName('activeLabel');
+                if (existing) this.scene.remove(existing);
+
+                const data = COMPONENT_DATA[part.name] || { title: part.name, desc: "No description available." };
+
+                const container = document.createElement('div');
+                container.className = 'contrast-Label'; 
+                container.style.background = 'rgba(0, 0, 0, 0.75)';
+                
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'label-title';
+                titleDiv.textContent = data.title;
+                titleDiv.style.color = "white";
+                container.appendChild(titleDiv);
+
+                const descDiv = document.createElement('div');
+                descDiv.className = 'label-desc';
+                descDiv.textContent = data.desc;
+                descDiv.style.color = "white";
+                container.appendChild(descDiv);
+
+                const label = new CSS2DObject(container);
+                label.position.copy(pos);
+                label.name = 'activeLabel';
+                
+                this.scene.add(label);
+            }
+
+
+            initLights() {
+                const ambient = new THREE.AmbientLight(0xffffff, 1.2); 
+                const mainLight = new THREE.DirectionalLight(0xffffff, 1.5);
+                mainLight.position.set(5, 10, 7.5);
+                const rimLight = new THREE.PointLight(0x00f2ea, 15, 50);
+                rimLight.position.set(-5, 5, 0);
+                this.scene.add(ambient, mainLight, rimLight);
+            }
+
+            razdvolji() {
+                if (!this.loader.TopObjects || this.loader.TopObjects.length < 2) return;
+                
+                
+                const offset = 5;
+
+                if (!partsMoved) {
+                    this.movePart("Mainboard", { y: defaultParentPartsPosition.Mainboard.y - offset });
+                    this.movePart("UpperChassis", { y: defaultParentPartsPosition.UpperChassis.y + offset });
+                } else {
+                    this.movePart("Mainboard", { y: defaultParentPartsPosition.Mainboard.y });
+                    this.movePart("UpperChassis", { y: defaultParentPartsPosition.UpperChassis.y });
+                }
+
+                partsMoved = !partsMoved;
+            }
+
+            animate() {
+                requestAnimationFrame(() => this.animate());
+                if (this.loader) this.loader.update(0.016);
+                this.renderer.render(this.scene, this.camera);
+                this.labelRenderer.render(this.scene, this.camera);
+            }
+        }
+
+        
+        const myApp = new App('viewport-container', 
+        'https://raw.githubusercontent.com/MasterClassOnRightTrack/GPU_Project/main/mesh/RTX3080.glb', 
+        Object.keys(COMPONENT_DATA)
+        );
+        const partContainer = document.querySelector(".part-nav-scroll");
+
+        async function loadBtns() {
+            for (const [key, value] of Object.entries(COMPONENT_DATA)) {
+
+                const btn = document.createElement('button');
+                btn.className = 'component-btn';
+                btn.textContent = value.title;
+
+                btn.onclick = () => {
+                    const part = myApp.loader.findDescendant(key);
+
+                    if (part) {
+                        // myApp.unhighlightAll();
+
+                        if (value.requiresFade && !partsMoved) {
+                            myApp.razdvolji();
+                        }
+                        setTimeout(() => {
+                            myApp.onPartClick(part);
+                            // myApp.highlightPart(key);
+                        }, 1200);
+                    } else {
+                        console.warn(`Objekat sa imenom "${key}" nije pronađen u sceni.`);
+                    }
+                };
+
+                partContainer.appendChild(btn);
+            }
+        }
+
+        loadBtns();
+
+
+        partContainer.addEventListener("wheel", (event) => {
+            // Prevent the default vertical scroll
+            event.preventDefault();
+
+            partContainer.scrollLeft += event.deltaY;
+        }, { passive: false });
+        
+    </script>
+</html>
